@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>yayaluoya</title>
+  <script src="/utils/in-viewport.min.js"></script>
+</head>
+
+<body>
+  <div id="loading">
+    <div class="content">
+      <img id="head_portrait" src="/head_portrait.png" alt="yayaluoya-headPortrait">
+      <span>loading...</span>
+    </div>
+  </div>
+  <div id="app">
+    <!-- 首屏用的loading -->
+    <div id="SSRContent">
+      <!-- SSR内容，这部分内容只给爬虫用，默认隐藏 -->
+      <!--ssr-outlet-->
+    </div>
+  </div>
+  <script>
+    //动态添加显示类
+    document.getElementById('loading').classList.add('on');
+  </script>
+  <script async type="module" src="/src/entry-client.ts"></script>
+  <style>
+    #loading {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background-color: #22272e;
+      opacity: 0;
+      transition: all .2s;
+      z-index: 999999;
+      /* display: none; */
+    }
+
+    #loading.on {
+      opacity: 1;
+    }
+
+    #loading>.content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #head_portrait {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      border: 2px solid white;
+      border-radius: 10px;
+      z-index: 999999;
+      object-fit: cover;
+    }
+
+    #head_portrait.separation {
+      border: none;
+      position: absolute;
+    }
+
+    #loading>.content>span {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+    }
+
+    #SSRContent {
+      display: none;
+    }
+  </style>
+</body>
+
+</html>

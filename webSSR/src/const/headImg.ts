@@ -1,0 +1,1 @@
+export const headImg = '/head_portrait.png';
